@@ -70,7 +70,16 @@ input
 
 ## Asynchronous processing
 
-You can also use async methods. Because of the way C# compiles tasks, you can **only have one at the end of the pipe line**. There is an example of this in the "Example user flow" below. This is a restriction of Linq as well, but with Linq it's less noticed. If you have any suggestions of how to solve this, let me know.
+You can also use async methods. Because of how C# conceptualizes tasks, you **must** use all .PipeAsync after your first async method regardless of whether your subsequent method is async. PipeAsync refers to the return type of the method, which will always be asynchronous after the first asynchronous request. Under the covers, PipeAsync awaits the result of Task<T> and passes T to the non-async method.
+
+```csharp
+await input
+    .Pipe(Query)
+    .Pipe(Validate)
+    .PipeAsync(TransformAsync)
+    // Notice this is PipeAsync even though Submit is synchronous.
+    .PipeAsync(Submit);
+```
 
 # Why do we need a forward pipe operator?
 
