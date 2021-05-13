@@ -15,6 +15,18 @@ namespace WinstonPuckett.PipeExtensions
             @operator(input);
         }
 
+        public static async Task<U> PipeAsync<T, U>(this Task<T> inputTask, Func<T, U> @operator)
+        {
+            return @operator(await inputTask);
+        }
+        public static async Task PipeAsync<T>(this Task<T> inputTask, Action<T> @operator)
+        {
+            @operator(await inputTask);
+        }
+        public static async Task<U> PipeAsync<T, U>(this Task<T> inputTask, Func<T, Task<U>> @operator)
+        {
+            return await @operator(await inputTask);
+        }
         public static async Task<U> PipeAsync<T, U>(this T input, Func<T, Task<U>> @operator)
         {
             return await @operator(input);

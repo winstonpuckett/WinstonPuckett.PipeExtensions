@@ -76,25 +76,36 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public void Pipe_SimpleUserFlow()
+        public async Task Pipe_SimpleUserFlow_TwoAsyncMethod()
         {
             var input = new InputModel { Id = 1 };
 
-            // Good
-            input
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            await input 
                 .Pipe(Query)
                 .Pipe(Validate)
-                .Pipe(Transform)
-                .Pipe(Submit);
+                .PipeAsync(TransformAsync)
+                .PipeAsync(SubmitAsync);
+            stopwatch.Stop();
 
-            // Eh
-            var queryResult = Query(input);
-            Validate(queryResult);
-            var transform = Transform(queryResult);
-            Submit(transform);
+            Assert.True(stopwatch.ElapsedMilliseconds >= 2000);
+        }
+        [Fact]
+        public async Task Pipe_SimpleUserFlow_MixedAsync()
+        {
+            var input = new InputModel { Id = 1 };
 
-            // Bad
-            Submit(Transform(Validate(Query(input))));
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            await input
+                .Pipe(Query)
+                .Pipe(Validate)
+                .PipeAsync(TransformAsync)
+                .PipeAsync(Submit);
+            stopwatch.Stop();
+
+            Assert.True(stopwatch.ElapsedMilliseconds >= 2000);
         }
 
         Model Query(InputModel input)
@@ -114,9 +125,18 @@ namespace WinstonPuckett.PipeExtensions.Tests
         {
             return new OutputModel { Email = model.Email };
         }
+        async Task<OutputModel> TransformAsync(Model model)
+        {
+            await Task.Delay(2000);
+            return new OutputModel { Email = model.Email };
+        }
         void Submit(OutputModel output)
         {
 
+        }
+        async Task SubmitAsync(OutputModel output)
+        {
+            await Task.Delay(2000);
         }
 
         class InputModel
