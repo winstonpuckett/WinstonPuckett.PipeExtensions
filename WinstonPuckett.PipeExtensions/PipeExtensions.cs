@@ -14,9 +14,7 @@ namespace WinstonPuckett.PipeExtensions
         /// <param name="func">The function to call which operates on T.</param>
         /// <returns>An object of type U</returns>
         public static U Pipe<T, U>(this T input, Func<T, U> func)
-        {
-            return func(input);
-        }
+            => func(input);
 
         /// <summary>
         /// Pass T to func.
@@ -25,9 +23,7 @@ namespace WinstonPuckett.PipeExtensions
         /// <param name="input">The object you're operating on.</param>
         /// <param name="func">The function to call which operates on T.</param>
         public static void Pipe<T>(this T input, Action<T> func)
-        {
-            func(input);
-        }
+            => func(input);
 
         /// <summary>
         /// Await T and pass it to func, return a Task of U.
@@ -38,9 +34,7 @@ namespace WinstonPuckett.PipeExtensions
         /// <param name="func">The function to call which operates on T.</param>
         /// <returns>An object of type U wrapped in a Task</returns>
         public static async Task<U> PipeAsync<T, U>(this Task<T> inputTask, Func<T, U> func)
-        {
-            return func(await inputTask);
-        }
+            => func(await inputTask);
 
         /// <summary>
         /// Await T and pass it to func.
@@ -49,9 +43,7 @@ namespace WinstonPuckett.PipeExtensions
         /// <param name="inputTask">The object you're operating on wrapped in a Task.</param>
         /// <param name="func">The function to call which operates on T.</param>
         public static async Task PipeAsync<T>(this Task<T> inputTask, Action<T> func)
-        {
-            func(await inputTask);
-        }
+            => func(await inputTask);
 
         /// <summary>
         /// Await T and pass it to asyncFunc, return a Task of U.
@@ -62,9 +54,7 @@ namespace WinstonPuckett.PipeExtensions
         /// <param name="asyncFunc">The function to call which operates on T.</param>
         /// <returns>An object of type U wrapped in a Task</returns>
         public static async Task<U> PipeAsync<T, U>(this Task<T> inputTask, Func<T, Task<U>> asyncFunc)
-        {
-            return await asyncFunc(await inputTask);
-        }
+            => await asyncFunc(await inputTask);
 
         /// <summary>
         /// Pass T to asyncFunc, return a Task of U.
@@ -75,9 +65,7 @@ namespace WinstonPuckett.PipeExtensions
         /// <param name="asyncFunc">The function to call which operates on T.</param>
         /// <returns>An object of type U wrapped in a Task</returns>
         public static async Task<U> PipeAsync<T, U>(this T input, Func<T, Task<U>> asyncFunc)
-        {
-            return await asyncFunc(input);
-        }
+            => await asyncFunc(input);
 
         /// <summary>
         /// Await T and pass it to asyncFunc, return a Task of U.
@@ -87,8 +75,6 @@ namespace WinstonPuckett.PipeExtensions
         /// <param name="asyncFunc">The function to call which operates on T.</param>
         /// <returns>A Task</returns>
         public static async Task PipeAsync<T>(this T input, Func<T, Task> asyncFunc)
-        {
-            await asyncFunc(input);
-        }
+            => await asyncFunc(input);
     }
 }
