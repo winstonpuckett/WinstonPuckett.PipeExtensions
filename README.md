@@ -1,6 +1,6 @@
 # Summary
 
-This package provides a basic forward pipe operator like would be common in a functional language. This is a commonly requested language feature in C#, but appears to not currently be on the schedule.
+This package provides a basic forward pipe operator. This is a commonly requested language feature in C#, but appears to not currently be on the schedule.
 
 Here are currently open tickets requesting the feature:
 - [C# ticket #74](https://github.com/dotnet/csharplang/discussions/74)
