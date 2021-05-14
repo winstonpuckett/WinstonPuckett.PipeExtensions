@@ -6,7 +6,7 @@
     <PackageId>WinstonPuckett.PipeExtensions</PackageId>
     <Company></Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Description>Creating a pseudo forward-pipe operator for C# using extension methods.</Description>
+    <Description>A forward-pipe operator implementation using extension methods.</Description>
     <PackageProjectUrl>https://github.com/winstonpuckett/WinstonPuckett.PipeExtensions</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
     <PackageIconUrl />
@@ -16,6 +16,8 @@
     <PackageReleaseNotes>Add all pipe operations and tests.</PackageReleaseNotes>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+    <Product>PipeExtensions</Product>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
