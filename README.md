@@ -1,6 +1,10 @@
 # Summary
 
-This package provides a basic forward pipe operator like would be common in a functional language. This is a commonly requested language feature in C#, but appears to not currently be on the schedule [C# ticket #74](https://github.com/dotnet/csharplang/discussions/74), or my prefered syntax, [C# ticket #96](https://github.com/dotnet/csharplang/discussions/96).
+This package provides a basic forward pipe operator. This is a commonly requested language feature in C#, but appears to not currently be on the schedule.
+
+Here are currently open tickets requesting the feature:
+- [C# ticket #74](https://github.com/dotnet/csharplang/discussions/74)
+- [C# ticket #96](https://github.com/dotnet/csharplang/discussions/96).
 
 To my knowledge, we can't override an operator for every object type, so I've opted instead to use extension methods.
 
@@ -52,10 +56,6 @@ public static U Pipe<T, U>(this T input, Func<T, U> @operator)
 }
 ```
 
-## Build vs Buy
-
-If you're concerned about build vs buy, you might as well just copy this code into your repository as your starting point. Then you don't have to worry about upgrading another NuGet package. If you do copy out the code, make sure to star this repository. That way, you get notifications when something gets updated and I get to see someone likes the idea.
-
 ## Using the pipe operator
 
 To use the Pipe operator, you would just call .Pipe on whatever object you're using and pass in the function you're hoping to run.
@@ -92,8 +92,6 @@ public class UserFlow
 {
   public async Task<ActionResult> Pipe_UserFlow(Input input)
   {
-    // Utilize the pipe for extreme readability.
-    
     try 
     {
       await input
