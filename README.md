@@ -1,6 +1,10 @@
 # Summary
 
-This package provides a basic forward pipe operator like would be common in a functional language. This is a commonly requested language feature in C#, but appears to not currently be on the schedule [C# ticket #74](https://github.com/dotnet/csharplang/discussions/74), or my prefered syntax, [C# ticket #96](https://github.com/dotnet/csharplang/discussions/96).
+This package provides a basic forward pipe operator like would be common in a functional language. This is a commonly requested language feature in C#, but appears to not currently be on the schedule.
+
+Here are currently open tickets requesting the feature:
+- [C# ticket #74](https://github.com/dotnet/csharplang/discussions/74)
+- [C# ticket #96](https://github.com/dotnet/csharplang/discussions/96).
 
 To my knowledge, we can't override an operator for every object type, so I've opted instead to use extension methods.
 
