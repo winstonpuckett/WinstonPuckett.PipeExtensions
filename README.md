@@ -10,7 +10,9 @@ To my knowledge, we can't override an operator for every object type, so I've op
 
 # NuGet
 
-There is currently no way to install this from NuGet, but this is coming soon.
+- [NuGet page](https://www.nuget.org/packages/WinstonPuckett.PipeExtensions/1.0.0#)
+- Powershell: Install-Package WinstonPuckett.PipeExtensions -Version 1.0.0
+- Visual studio: Search for "WinstonPuckett.PipeExtensions"
 
 # What is a forward pipe operator?
 
