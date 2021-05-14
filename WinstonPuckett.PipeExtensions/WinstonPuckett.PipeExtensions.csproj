@@ -1,7 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>WinstonPuckett</Authors>
+    <PackageId>WinstonPuckett.PipeExtensions</PackageId>
+    <Company></Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>Creating a pseudo forward-pipe operator for C# using extension methods.</Description>
+    <PackageProjectUrl>https://github.com/winstonpuckett/WinstonPuckett.PipeExtensions</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/winstonpuckett/WinstonPuckett.PipeExtensions</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>functional, fsharp, operator, extensions</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Icon\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
