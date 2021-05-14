@@ -8,11 +8,9 @@ Here are currently open tickets requesting the feature:
 
 To my knowledge, we can't override an operator for every object type, so I've opted instead to use extension methods.
 
-# NuGet
+# Install
 
-- [NuGet page](https://www.nuget.org/packages/WinstonPuckett.PipeExtensions/1.0.0#)
-- Powershell: Install-Package WinstonPuckett.PipeExtensions -Version 1.0.0
-- Visual studio: Search for "WinstonPuckett.PipeExtensions"
+[NuGet page](https://www.nuget.org/packages/WinstonPuckett.PipeExtensions/1.0.0#)
 
 # What is a forward pipe operator?
 
