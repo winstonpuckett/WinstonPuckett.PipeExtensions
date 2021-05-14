@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>WinstonPuckett</Authors>
     <PackageId>WinstonPuckett.PipeExtensions</PackageId>
+    <Title>PipeExtensions</Title>
     <Company></Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>A forward-pipe operator implementation using extension methods.</Description>
