@@ -13,6 +13,7 @@
     <RepositoryUrl>https://github.com/winstonpuckett/WinstonPuckett.PipeExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>functional, fsharp, operator, extensions</PackageTags>
+    <PackageReleaseNotes>Add all pipe operations and tests.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
