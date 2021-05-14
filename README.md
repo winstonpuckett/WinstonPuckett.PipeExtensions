@@ -96,8 +96,6 @@ public class UserFlow
 {
   public async Task<ActionResult> Pipe_UserFlow(Input input)
   {
-    // Utilize the pipe for extreme readability.
-    
     try 
     {
       await input
