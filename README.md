@@ -56,10 +56,6 @@ public static U Pipe<T, U>(this T input, Func<T, U> @operator)
 }
 ```
 
-## Build vs Buy
-
-If you're concerned about build vs buy, you might as well just copy this code into your repository as your starting point. Then you don't have to worry about upgrading another NuGet package. If you do copy out the code, make sure to star this repository. That way, you get notifications when something gets updated and I get to see someone likes the idea.
-
 ## Using the pipe operator
 
 To use the Pipe operator, you would just call .Pipe on whatever object you're using and pass in the function you're hoping to run.
