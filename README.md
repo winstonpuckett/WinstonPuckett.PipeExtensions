@@ -4,7 +4,7 @@ This package provides a basic forward pipe operator. This is a commonly requeste
 
 Here are currently open tickets requesting the feature:
 - [C# ticket #74](https://github.com/dotnet/csharplang/discussions/74)
-- [C# ticket #96](https://github.com/dotnet/csharplang/discussions/96).
+- [C# ticket #96](https://github.com/dotnet/csharplang/discussions/96)
 
 To my knowledge, we can't override an operator for every object type, so I've opted instead to use extension methods.
 
@@ -142,3 +142,7 @@ public class UserFlow
   }
 }
 ```
+
+# Other forward pipe operator projects
+
+After I released this package, I found out there is another repository out there with a similar aim. While I didn't draw inspiration from the repo, it was first and deserves mention. [TomyDurazno's PipeExtensions](https://github.com/TomyDurazno/PipeExtensions)
