@@ -11,10 +11,10 @@ namespace WinstonPuckett.PipeExtensions.Tests
         {
             var cancellationToken = new CancellationToken(true);
 
-            async Task canCancellFunc(int number, CancellationToken token)
+            async Task canCancelFunc(int number, CancellationToken token)
                 => await Task.Run(() => number, cancellationToken);
 
-            await Assert.ThrowsAsync<TaskCanceledException>(async () => await 10.PipeAsync(canCancellFunc, cancellationToken));
+            await Assert.ThrowsAsync<TaskCanceledException>(async () => await 10.PipeAsync(canCancelFunc, cancellationToken));
         }
 
         [Fact]
@@ -22,10 +22,10 @@ namespace WinstonPuckett.PipeExtensions.Tests
         {
             var cancellationToken = new CancellationToken(true);
 
-            async Task<bool> canCancellFunc(bool someBool, CancellationToken token)
+            async Task<bool> canCancelFunc(bool someBool, CancellationToken token)
                 => await Task.Run(() => someBool, cancellationToken);
 
-            await Assert.ThrowsAsync<TaskCanceledException>(async () => await true.PipeAsync(canCancellFunc, cancellationToken));
+            await Assert.ThrowsAsync<TaskCanceledException>(async () => await true.PipeAsync(canCancelFunc, cancellationToken));
         }
     }
 }
