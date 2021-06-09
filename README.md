@@ -6,8 +6,6 @@ Here are currently open tickets requesting the feature:
 - [C# ticket #74](https://github.com/dotnet/csharplang/discussions/74)
 - [C# ticket #96](https://github.com/dotnet/csharplang/discussions/96)
 
-To my knowledge, we can't override an operator for every object type, so I've opted instead to use extension methods.
-
 # Install
 
 [NuGet page](https://www.nuget.org/packages/WinstonPuckett.PipeExtensions/1.0.0#)
@@ -43,7 +41,7 @@ The above syntax means, "Take input, pass it to Query, then pass the result to V
 
 # What does a forward pipe operator look like in C#?
 
-As far as I know, you can't overload an operator for the base object or even overload two operators squished together (|>). So, barring this being added to C# natively, we can only simulate a forward pipe operator with extension methods.
+Barring it being added to C# natively, the best way to simulate a forward pipe operator is with extension methods.
 
 ## Implementation
 
@@ -81,9 +79,33 @@ await input
     .PipeAsync(Submit);
 ```
 
+### Cancellation Tokens
+  
+Cancellation Tokens are available as of version 1.1.0. To use them, pass in the token after passing in the function to operate on. For this to compile, the function must accept a cancellation token (Func<T, CancellationToken, TResult>).
+  
+```csharp
+await input
+    .Pipe(Query)
+    .Pipe(Validate)
+    // Note the cancellation token.
+    .PipeAsync(TransformAsync, cancellationToken)
+    .PipeAsync(Submit);
+```
+  
+## Passing multiple arguments.
+  
+This package has opted to retain a consistent "Take what's on the left and pass it to the right" syntax, which means that we can only operate on one variable at a time. Even with this limitation, there are many ways to pass extra variables to functions. The most readable is a Tuple.
+  
+```csharp
+bool Validate((int id, string name))
+  => id > 0 && name != "invalid";
+
+var isValid = (0, "Charlie").Pipe(Validate);
+```
+
 # Why do we need a forward pipe operator?
 
-Code readability is important. While it's the standard to create temporary variables to make code more readable, temporary variables polute the readability. The way that F# has solved the problem is with the forward pipe operator. We should attempt to solve the problem for C# as well. One way to do this is by borrowing the concept of a forward pipe operator.
+Code readability is important. While temporary variables are a step towards readability, they consistently create noise. F# and other functional languages have solved this problem. We should attempt to solve the problem for C# as well. One way to do this is by borrowing the concept of a forward pipe operator.
 
 # Example user flow
 
