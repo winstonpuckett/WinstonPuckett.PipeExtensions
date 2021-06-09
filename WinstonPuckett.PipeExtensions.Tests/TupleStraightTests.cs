@@ -2,7 +2,7 @@
 
 namespace WinstonPuckett.PipeExtensions.Tests
 {
-    public class MultipleArgumentTests
+    public class TupleStraightTests
     {
         [Fact]
         public void NamedTuplesWork()

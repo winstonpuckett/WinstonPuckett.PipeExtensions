@@ -14,11 +14,12 @@
     <RepositoryUrl>https://github.com/winstonpuckett/WinstonPuckett.PipeExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>functional, fsharp, operator, extensions</PackageTags>
-    <PackageReleaseNotes>Add all pipe operations and tests.</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <PackageReleaseNotes>Add support for CancellationTokens</PackageReleaseNotes>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
     <Product>PipeExtensions</Product>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
