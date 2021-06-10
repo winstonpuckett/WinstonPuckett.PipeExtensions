@@ -1,33 +1,42 @@
-﻿using Xunit;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace WinstonPuckett.PipeExtensions.Tests
 {
-    public class TupleStraightTests
+    public class In1_Out1_NonStandardArgumentPass_Tests
     {
+
+
         [Fact]
-        public void NamedTuplesWork()
+        public void CanPassTupleToFunctionExpectingTuple()
         {
-            var person = 
+            static (string name, int age) addOneToAge((string name, int age) person)
+                => (person.name, person.age + 1);
+
+            var person =
                 (name: "Ingrid", age: 10)
-                .Pipe(AddOneToAge)
-                .Pipe(AddOneToAge)
-                .Pipe(AddOneToAge);
+                .Pipe(addOneToAge)
+                .Pipe(addOneToAge)
+                .Pipe(addOneToAge);
 
             Assert.Equal(13, person.age);
         }
 
-        private (string name, int age) AddOneToAge((string name, int age) person)
-        {
-            return (person.name, person.age + 1);
-        }
 
         [Fact]
-        public void PassingFromScopedWorks()
+        public void CanPassExtraParameterToAnonymousFunction()
         {
+            static int AddStepsToTotal(int stepsTravelled, int stepsToAddPerCall)
+                => stepsTravelled + stepsToAddPerCall;
+
             int stepsTravelled = 0;
             int stepsToAddPerCall = 2;
 
-            var totalSteps = 
+            var totalSteps =
                 stepsTravelled
                 .Pipe(travelled => AddStepsToTotal(travelled, stepsToAddPerCall))
                 .Pipe(travelled => AddStepsToTotal(travelled, stepsToAddPerCall))
@@ -38,13 +47,8 @@ namespace WinstonPuckett.PipeExtensions.Tests
             Assert.Equal(10, totalSteps);
         }
 
-        private int AddStepsToTotal(int stepsTravelled, int stepsToAddPerCall)
-        {
-            return stepsTravelled + stepsToAddPerCall;
-        }
-
         [Fact]
-        public void PassingFromScopedWorks_RefactoredAsMonadic()
+        public void CanPassFromScopeToNamedFunction()
         {
             int stepsTravelled = 0;
             int stepsToAddPerCall = 2;

@@ -6,47 +6,8 @@ using Xunit;
 
 namespace WinstonPuckett.PipeExtensions.Tests
 {
-    public class AsyncTests
+    public class SampleUserFlow_Tests
     {
-        [Fact]
-        public async Task Pipe_CanUseAsyncFunc()
-        {
-            var waitLengthMilliseconds = 200;
-            async Task<T> WaitThenReturn<T>(T input)
-            {
-                await Task.Delay(waitLengthMilliseconds);
-                return input;
-            }
-
-            Stopwatch stopwatch = new Stopwatch();
-
-            stopwatch.Start();
-            var s = await 10
-                .PipeAsync(async num => await WaitThenReturn(num));
-            stopwatch.Stop();
-
-            Assert.True(stopwatch.ElapsedMilliseconds >= waitLengthMilliseconds);
-        }
-
-        [Fact]
-        public async Task Pipe_CanUseAsyncAction()
-        {
-            var waitLengthMilliseconds = 200;
-            async Task WaitThenNothing<T>(T input)
-            {
-                await Task.Delay(waitLengthMilliseconds);
-            }
-
-            Stopwatch stopwatch = new Stopwatch();
-
-            stopwatch.Start();
-            await 10
-                .PipeAsync(async num => await WaitThenNothing(num));
-            stopwatch.Stop();
-
-            Assert.True(stopwatch.ElapsedMilliseconds >= waitLengthMilliseconds);
-        }
-
         [Fact]
         public async Task Pipe_SimpleUserFlow_TwoAsyncMethod()
         {
@@ -61,7 +22,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
                 .PipeAsync(SubmitAsync);
             stopwatch.Stop();
 
-            Assert.True(stopwatch.ElapsedMilliseconds >= 2000);
+            Assert.True(stopwatch.ElapsedMilliseconds >= 50);
         }
         
         [Fact]
@@ -78,9 +39,10 @@ namespace WinstonPuckett.PipeExtensions.Tests
                 .PipeAsync(Submit);
             stopwatch.Stop();
 
-            Assert.True(stopwatch.ElapsedMilliseconds >= 2000);
+            Assert.True(stopwatch.ElapsedMilliseconds >= 50);
         }
 
+        #region Example Infrastructure
         Model Query(InputModel input)
         {
             return new Model
@@ -100,7 +62,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
         async Task<OutputModel> TransformAsync(Model model)
         {
-            await Task.Delay(2000);
+            await Task.Delay(50);
             return new OutputModel { Email = model.Email };
         }
         void Submit(OutputModel output)
@@ -109,7 +71,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
         async Task SubmitAsync(OutputModel output)
         {
-            await Task.Delay(2000);
+            await Task.Delay(50);
         }
 
         class InputModel
@@ -125,6 +87,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         class OutputModel
         {
             public string Email { get; set; }
-        }
+        } 
+        #endregion
     }
 }
