@@ -47,6 +47,23 @@ namespace WinstonPuckett.PipeExtensions.Tests
             Assert.True(stopwatch.ElapsedMilliseconds >= waitLengthMilliseconds);
         }
 
+        [Fact]
+        public async Task TaskT_Task()
+        {
+            var waitLengthMilliseconds = 30;
+            async Task waitThenNothing(int input)
+            {
+                await Task.Delay(waitLengthMilliseconds);
+            }
 
+            Stopwatch stopwatch = new Stopwatch();
+
+            stopwatch.Start();
+            await Task.Run(() => 0)
+                .PipeAsync(waitThenNothing);
+            stopwatch.Stop();
+
+            Assert.True(stopwatch.ElapsedMilliseconds >= waitLengthMilliseconds);
+        }
     }
 }

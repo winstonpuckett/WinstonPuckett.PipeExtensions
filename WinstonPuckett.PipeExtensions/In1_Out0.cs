@@ -46,5 +46,16 @@ namespace WinstonPuckett.PipeExtensions
         /// <returns>A Task</returns>
         public static async Task PipeAsync<T>(this T input, Func<T, CancellationToken, Task> asyncFunc, CancellationToken cancellationToken = default)
             => await asyncFunc(input, cancellationToken);
+
+        /// <summary>
+        /// Pass input and cancellationToken to asyncFunc
+        /// </summary>
+        /// <typeparam name="T">The type you're operating on.</typeparam>
+        /// <param name="input">The object passed to func.</param>
+        /// <param name="asyncFunc">The function to call which operates on T.</param>
+        /// <param name="cancellationToken">The cancellationToken to pass to asyncFunc</param>
+        /// <returns>A Task</returns>
+        public static async Task PipeAsync<T>(this Task<T> input, Func<T, CancellationToken, Task> asyncFunc, CancellationToken cancellationToken = default)
+            => await asyncFunc(await input, cancellationToken);
     }
 }
