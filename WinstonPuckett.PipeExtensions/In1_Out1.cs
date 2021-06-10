@@ -63,6 +63,14 @@ namespace WinstonPuckett.PipeExtensions
         public static async Task<U> PipeAsync<T, U>(this Task<T> inputTask, Func<T, Task<U>> asyncFunc)
             => await asyncFunc(await inputTask);
 
+        /// <summary>
+        /// Await inputTask and pass it to asyncFunc, return a Task of U.
+        /// </summary>
+        /// <typeparam name="T">The type you're operating on.</typeparam>
+        /// <typeparam name="U">The type asyncFunc returns</typeparam>
+        /// <param name="inputTask">The object you're operating on wrapped in a Task.</param>
+        /// <param name="asyncFunc">The function to call which operates on T.</param>
+        /// <returns>An object of type U wrapped in a Task</returns>
         public static async Task<U> PipeAsync<T, U>(this Task<T> inputTask, Func<T, CancellationToken, Task<U>> asyncFunc, CancellationToken cancellationToken = default)
             => await asyncFunc(await inputTask, cancellationToken);
     }
