@@ -9,31 +9,67 @@ namespace WinstonPuckett.PipeExtensions
         /// <summary>
         /// Destructure input tuple, pass it to func, and return the result.
         /// </summary>
-        /// <typeparam name="T">The type of the first parameter to func.</typeparam>
+        /// <typeparam name="TParam">First parameter type.</typeparam>
+        /// <typeparam name="TParam2">Second parameter type.</typeparam>
         /// <param name="input">The object passed to func.</param>
         /// <param name="func">The function to call which operates on input.</param>
-        public static V Pipe<T, U, V>(this (T, U) input, Func<T, U, V> func)
+        public static TOutput Pipe<TParam, TParam2, TOutput>(
+            this (TParam, TParam2) input,
+            Func<TParam, TParam2, TOutput> func)
             => func(input.Item1, input.Item2);
 
         /// <summary>
         /// Destructure input tuple, pass it to func, and return the result.
         /// </summary>
-        /// <typeparam name="T">The type of the first parameter to func.</typeparam>
+        /// <typeparam name="TParam">First parameter type.</typeparam>
+        /// <typeparam name="TParam2">Second parameter type.</typeparam>
         /// <param name="input">The object passed to func.</param>
         /// <param name="func">The function to call which operates on input.</param>
-        public static async Task<V> PipeAsync<T, U, V>(this (T, U) input, Func<T, U, Task<V>> asyncFunc)
+        public static async Task<TOutput> PipeAsync<TParam, TParam2, TOutput>(
+            this (TParam, TParam2) input,
+            Func<TParam, TParam2, Task<TOutput>> asyncFunc)
             => await asyncFunc(input.Item1, input.Item2);
 
-        public static async Task<V> PipeAsync<T, U, V>(this Task<(T, U)> inputTask, Func<T, U, V> func)
+        /// <summary>
+        /// Await input tuple, destructure it, pass it to func, and return the result.
+        /// </summary>
+        /// <typeparam name="TParam">First parameter type.</typeparam>
+        /// <typeparam name="TParam2">Second parameter type.</typeparam>
+        public static async Task<TOutput> PipeAsync<TParam, TParam2, TOutput>(
+            this Task<(TParam, TParam2)> inputTask,
+            Func<TParam, TParam2, TOutput> func)
             => (await inputTask).Pipe(func);
 
-        public static async Task<V> PipeAsync<T, U, V>(this Task<(T, U)> inputTask, Func<T, U, Task<V>> func)
+        /// <summary>
+        /// Await input tuple, destructure it, pass it to asyncFunc, and return the result.
+        /// </summary>
+        /// <typeparam name="TParam">First parameter type.</typeparam>
+        /// <typeparam name="TParam2">Second parameter type.</typeparam>
+        public static async Task<TOutput> PipeAsync<TParam, TParam2, TOutput>(
+            this Task<(TParam, TParam2)> inputTask,
+            Func<TParam, TParam2, Task<TOutput>> func)
             => await (await inputTask).PipeAsync(func);
 
-        public static async Task<V> PipeAsync<T, U, V>(this (T, U) input, Func<T, U, CancellationToken, Task<V>> asyncFunc, CancellationToken cancellationToken = default)
+        /// <summary>
+        /// Destructure input tuple, pass it and cancellationToken to asyncFunc, and return the result.
+        /// </summary>
+        /// <typeparam name="TParam">First parameter type.</typeparam>
+        /// <typeparam name="TParam2">Second parameter type.</typeparam>
+        public static async Task<TOutput> PipeAsync<TParam, TParam2, TOutput>(
+            this (TParam, TParam2) input,
+            Func<TParam, TParam2, CancellationToken, Task<TOutput>> asyncFunc,
+            CancellationToken cancellationToken = default)
             => await input.PipeAsync(i => asyncFunc(i.Item1, i.Item2, cancellationToken));
 
-        public static async Task<V> PipeAsync<T, U, V>(this Task<(T, U)> inputTask, Func<T, U, CancellationToken, Task<V>> asyncFunc, CancellationToken cancellationToken = default)
+        /// <summary>
+        /// Await input tuple, destructure it, pass it and cancellationToken to asyncFunc, and return the result.
+        /// </summary>
+        /// <typeparam name="TParam">First parameter type.</typeparam>
+        /// <typeparam name="TParam2">Second parameter type.</typeparam>
+        public static async Task<TOutput> PipeAsync<TParam, TParam2, TOutput>(
+            this Task<(TParam, TParam2)> inputTask,
+            Func<TParam, TParam2, CancellationToken, Task<TOutput>> asyncFunc,
+            CancellationToken cancellationToken = default)
             => await (await inputTask).PipeAsync(asyncFunc, cancellationToken);
 
     }
