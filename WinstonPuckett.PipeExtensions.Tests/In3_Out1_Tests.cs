@@ -69,7 +69,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task TaskACancellationToken_Task_ExceptionThrown()
+        public async Task TaskACancellationToken_TaskB_ExceptionThrown()
         {
             var cancellationToken = new CancellationToken(true);
 

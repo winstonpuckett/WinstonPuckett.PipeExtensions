@@ -20,7 +20,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task TaskA_BS()
+        public async Task TaskA_B()
         {
             static bool flipToTrue(int anyNum, string anyString) 
                 => true;
@@ -33,7 +33,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task A_BTask()
+        public async Task A_TaskB()
         {
             static async Task<bool> flipToTrue(int anyNum, string anyString) 
                 => await Task.Run(() => true);
@@ -46,7 +46,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task TaskA_BTask()
+        public async Task TaskA_TaskB()
         {
             static async Task<bool> flipToTrue(int _, string _2)
                 => await Task.Run(() => true);
@@ -59,7 +59,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task ACancellationToken_Task_ExceptionThrown()
+        public async Task ACancellationToken_TaskB_ExceptionThrown()
         {
             var cancellationToken = new CancellationToken(true);
 
@@ -70,7 +70,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task TaskACancellationToken_Task_ExceptionThrown()
+        public async Task TaskACancellationToken_TaskB_ExceptionThrown()
         {
             var cancellationToken = new CancellationToken(true);
 
