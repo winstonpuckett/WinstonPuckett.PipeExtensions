@@ -8,7 +8,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
     public class In1_Out1_Tests
     {
         [Fact]
-        public void T_U()
+        public void A_B()
         {
             int x = 0
                 .Pipe((z) => z + 1);
@@ -17,7 +17,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public void T_U__U_V()
+        public void A_B_Then_B_C()
         {
             string s = 10
                 .Pipe((num) => num + 20)
@@ -27,7 +27,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task T_TaskU()
+        public async Task A_TaskB()
         {
             var waitLengthMilliseconds = 30;
             async Task<T> WaitThenReturn<T>(T input)
@@ -47,7 +47,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task TCancellationToken_TaskU_ExceptionThrown()
+        public async Task ACancellationToken_TaskB_ExceptionThrown()
         {
             var cancellationToken = new CancellationToken(true);
 
@@ -58,7 +58,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task TaskT_TaskU()
+        public async Task TaskA_TaskB()
         {
             async Task<int> addOneAsync(int i) 
                 => await Task.Run(() => i + 1);
@@ -71,7 +71,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task TaskTCancellationToken_TaskU()
+        public async Task TaskACancellationToken_TaskB()
         {
             var cancellationToken = new CancellationToken(true);
 

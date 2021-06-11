@@ -8,7 +8,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
     public class In1_Out0_Tests
     {
         [Fact]
-        public void T()
+        public void A()
         {
             bool testBool = false;
             void flipBool(int _) { testBool = true; }
@@ -20,7 +20,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task TCancellationToken_Task_ExceptionThrown()
+        public async Task ACancellationToken_Task_ExceptionThrown()
         {
             var cancellationToken = new CancellationToken(true);
 
@@ -31,7 +31,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task T_Task()
+        public async Task A_Task()
         {
             var waitLengthMilliseconds = 30;
             async Task waitThenNothing<T>(T input) 
@@ -48,7 +48,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task TaskT_Task()
+        public async Task TaskA_Task()
         {
             var waitLengthMilliseconds = 30;
             async Task waitThenNothing(int input)
