@@ -24,7 +24,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         {
             var cancellationToken = new CancellationToken(true);
 
-            async Task canCancelFunc(int number, CancellationToken token)
+            async Task canCancelFunc(int _, CancellationToken token)
                 => await Task.Run(() => { }, cancellationToken);
 
             await Assert.ThrowsAsync<TaskCanceledException>(async () => await 10.PipeAsync(canCancelFunc, cancellationToken));
@@ -51,7 +51,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         public async Task TaskA_Task()
         {
             var waitLengthMilliseconds = 30;
-            async Task waitThenNothing(int input)
+            async Task waitThenNothing(int _)
             {
                 await Task.Delay(waitLengthMilliseconds);
             }
