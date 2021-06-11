@@ -13,6 +13,7 @@ namespace WinstonPuckett.PipeExtensions
         /// </summary>
         /// <typeparam name="TParam">First parameter type.</typeparam>
         /// <typeparam name="TParam2">Second parameter type.</typeparam>
+        /// <typeparam name="TParam3">Third parameter type.</typeparam>
         /// <param name="input">The tuple desctructured and passed to func.</param>
         /// <param name="func">The function to call which operates on input.</param>
         public static void Pipe<TParam, TParam2, TParam3>(this (TParam, TParam2, TParam3) input, Action<TParam, TParam2, TParam3> func)
@@ -23,7 +24,8 @@ namespace WinstonPuckett.PipeExtensions
         /// </summary>
         /// <typeparam name="TParam">First parameter type.</typeparam>
         /// <typeparam name="TParam2">Second parameter type.</typeparam>
-        /// <param name="input">The tuple desctructured and passed to func.</param>
+        /// <typeparam name="TParam3">Third parameter type.</typeparam>
+        /// <param name="input">The tuple desctructured and passed to asyncFunc.</param>
         /// <param name="asyncFunc">The async function to call/await</param>
         public static async Task PipeAsync<TParam, TParam2, TParam3>(
             this (TParam, TParam2, TParam3) input,
@@ -31,10 +33,11 @@ namespace WinstonPuckett.PipeExtensions
             => await asyncFunc(input.Item1, input.Item2, input.Item3);
 
         /// <summary>
-        /// Await input tuple, destructure it, and pass it to func.
+        /// Await inputTask tuple, destructure it, and pass it to func.
         /// </summary>
         /// <typeparam name="TParam">First parameter type.</typeparam>
         /// <typeparam name="TParam2">Second parameter type.</typeparam>
+        /// <typeparam name="TParam3">Third parameter type.</typeparam>
         /// <param name="inputTask">The tuple awaited, desctructured, and passed to func.</param>
         /// <param name="func">The function to call which operates on input.</param>
         public static async Task PipeAsync<TParam, TParam2, TParam3>(
@@ -43,11 +46,12 @@ namespace WinstonPuckett.PipeExtensions
             => (await inputTask).Pipe(func);
 
         /// <summary>
-        /// Await input tuple, destructure it, pass it to asyncFunc, return a Task.
+        /// Await inputTask tuple, destructure it, pass it to asyncFunc, return a Task.
         /// </summary>
         /// <typeparam name="TParam">First parameter type.</typeparam>
         /// <typeparam name="TParam2">Second parameter type.</typeparam>
-        /// <param name="inputTask">The tuple awaited, desctructured, and passed to func.</param>
+        /// <typeparam name="TParam3">Third parameter type.</typeparam>
+        /// <param name="inputTask">The tuple awaited, desctructured, and passed to asyncFunc.</param>
         /// <param name="asyncFunc">The function to call which operates on input.</param>
         public static async Task PipeAsync<TParam, TParam2, TParam3>(
             this Task<(TParam, TParam2, TParam3)> inputTask,
@@ -59,6 +63,7 @@ namespace WinstonPuckett.PipeExtensions
         /// </summary>
         /// <typeparam name="TParam">First parameter type.</typeparam>
         /// <typeparam name="TParam2">Second parameter type.</typeparam>
+        /// <typeparam name="TParam3">Third parameter type.</typeparam>
         /// <param name="input">The object passed to func.</param>
         /// <param name="asyncFunc">The async function to call/await</param>
         /// <param name="cancellationToken">The cancellation token to pass to asyncFunc</param>
@@ -73,7 +78,8 @@ namespace WinstonPuckett.PipeExtensions
         /// </summary>
         /// <typeparam name="TParam">First parameter type.</typeparam>
         /// <typeparam name="TParam2">Second parameter type.</typeparam>
-        /// <param name="input">The object passed to asyncFunc.</param>
+        /// <typeparam name="TParam3">Third parameter type.</typeparam>
+        /// <param name="inputTask">The tuple awaited, desctructured, and passed to asyncFunc.</param>
         /// <param name="asyncFunc">The async function to call/await</param>
         /// <param name="cancellationToken">The cancellation token to pass to asyncFunc</param>
         public static async Task PipeAsync<TParam, TParam2, TParam3>(
