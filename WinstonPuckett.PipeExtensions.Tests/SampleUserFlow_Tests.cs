@@ -54,10 +54,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         {
             return model;
         }
-        OutputModel Transform(Model model)
-        {
-            return new OutputModel { Email = model.Email };
-        }
+
         async Task<OutputModel> TransformAsync(Model model)
         {
             await Task.Delay(50);

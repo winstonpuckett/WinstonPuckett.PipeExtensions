@@ -20,7 +20,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         }
 
         [Fact]
-        public async Task TCancellationToken_ExceptionThrown()
+        public async Task TCancellationToken_Task_ExceptionThrown()
         {
             var cancellationToken = new CancellationToken(true);
 

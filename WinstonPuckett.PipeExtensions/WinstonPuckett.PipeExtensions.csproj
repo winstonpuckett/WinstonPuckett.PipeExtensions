@@ -20,7 +20,7 @@
     <Product>PipeExtensions</Product>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Version>1.2.0</Version>
-    <ApplicationIcon>C:\Users\Bobby Puckett\source\repos\WinstonPuckett.PipeExtensions\WinstonPuckett.PipeExtensions\Icon\icon.png</ApplicationIcon>
+    <ApplicationIcon></ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

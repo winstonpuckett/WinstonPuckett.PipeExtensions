@@ -12,13 +12,13 @@ namespace WinstonPuckett.PipeExtensions.Tests
             static (string name, int age) addOneToAge((string name, int age) person)
                 => (person.name, person.age + 1);
 
-            var person =
+            var (name, age) =
                 (name: "Ingrid", age: 10)
                 .Pipe(addOneToAge)
                 .Pipe(addOneToAge)
                 .Pipe(addOneToAge);
 
-            Assert.Equal(13, person.age);
+            Assert.Equal(13, age);
         }
 
 
