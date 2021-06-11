@@ -14,12 +14,12 @@
     <RepositoryUrl>https://github.com/winstonpuckett/WinstonPuckett.PipeExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>functional, fsharp, operator, extensions</PackageTags>
-    <PackageReleaseNotes>Add support for destructuring tuples into dyadic funcitons.</PackageReleaseNotes>
-    <AssemblyVersion>1.2.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <PackageReleaseNotes>Add support for destructuring tuples into triadic funcitons.</PackageReleaseNotes>
+    <AssemblyVersion>1.3.0.0</AssemblyVersion>
+    <FileVersion>1.3.0.0</FileVersion>
     <Product>PipeExtensions</Product>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <ApplicationIcon></ApplicationIcon>
   </PropertyGroup>
 
