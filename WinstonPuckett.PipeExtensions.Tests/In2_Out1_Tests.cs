@@ -9,7 +9,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         [Fact]
         public void T()
         {
-            bool returnTrue(int _, string _2)
+            static bool returnTrue(int _, string _2)
                 => true;
 
             var result = 
@@ -22,7 +22,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         [Fact]
         public async Task TaskT()
         {
-            bool flipToTrue(int anyNum, string anyString) 
+            static bool flipToTrue(int anyNum, string anyString) 
                 => true;
 
             var result = 
@@ -35,7 +35,7 @@ namespace WinstonPuckett.PipeExtensions.Tests
         [Fact]
         public async Task T_Task()
         {
-            async Task<bool> flipToTrue(int anyNum, string anyString) => await Task.Run(() => true);
+            static async Task<bool> flipToTrue(int anyNum, string anyString) => await Task.Run(() => true);
             var result = await 
                 (0,string.Empty)
                 .PipeAsync(flipToTrue);
