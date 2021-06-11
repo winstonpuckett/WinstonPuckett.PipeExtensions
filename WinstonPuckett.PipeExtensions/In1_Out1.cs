@@ -9,7 +9,7 @@ namespace WinstonPuckett.PipeExtensions
     public static class In1_Out1
     {
         /// <summary>
-        /// Pass input to func and get back an object of type U.
+        /// Pass input to func and return the result.
         /// </summary>
         /// <typeparam name="T">The type you're operating on.</typeparam>
         /// <typeparam name="U">The type asyncFunc returns</typeparam>
@@ -20,7 +20,7 @@ namespace WinstonPuckett.PipeExtensions
             => func(input);
 
         /// <summary>
-        /// Pass input to asyncFunc, return a Task of U.
+        /// Pass input to asyncFunc and return the result.
         /// </summary>
         /// <typeparam name="T">The type you're operating on.</typeparam>
         /// <typeparam name="U">The type asyncFunc returns</typeparam>
@@ -31,7 +31,7 @@ namespace WinstonPuckett.PipeExtensions
             => await asyncFunc(input);
 
         /// <summary>
-        /// Pass input to asyncFunc, return a Task of U.
+        /// Pass input and cancellationToken to asyncFunc and return the result.
         /// </summary>
         /// <typeparam name="T">The type you're operating on.</typeparam>
         /// <typeparam name="U">The type asyncFunc returns</typeparam>
@@ -42,7 +42,7 @@ namespace WinstonPuckett.PipeExtensions
             => await asyncFunc(input, cancellationToken);
 
         /// <summary>
-        /// Await inputTask and pass it to func, return a Task of U.
+        /// Await inputTask, pass it to func, and return the result.
         /// </summary>
         /// <typeparam name="T">The type you're operating on.</typeparam>
         /// <typeparam name="U">The type asyncFunc returns</typeparam>
@@ -53,7 +53,7 @@ namespace WinstonPuckett.PipeExtensions
             => func(await inputTask);
 
         /// <summary>
-        /// Await inputTask and pass it to asyncFunc, return a Task of U.
+        /// Await inputTask, pass it to asyncFunc, and return the result.
         /// </summary>
         /// <typeparam name="T">The type you're operating on.</typeparam>
         /// <typeparam name="U">The type asyncFunc returns</typeparam>
@@ -64,7 +64,7 @@ namespace WinstonPuckett.PipeExtensions
             => await asyncFunc(await inputTask);
 
         /// <summary>
-        /// Await inputTask and pass it to asyncFunc, return a Task of U.
+        /// Await inputTask, pass it and the cancellationToken to asyncFunc, and return the result.
         /// </summary>
         /// <typeparam name="T">The type you're operating on.</typeparam>
         /// <typeparam name="U">The type asyncFunc returns</typeparam>

@@ -27,7 +27,7 @@ namespace WinstonPuckett.PipeExtensions
             => func(await inputTask);
 
         /// <summary>
-        /// Pass input to asyncFunc, return a Task of U.
+        /// Pass input to asyncFunc and return a Task.
         /// </summary>
         /// <typeparam name="T">The type you're operating on.</typeparam>
         /// <param name="input">The object passed to func.</param>
@@ -37,7 +37,7 @@ namespace WinstonPuckett.PipeExtensions
             => await asyncFunc(input);
 
         /// <summary>
-        /// Pass input and cancellationToken to asyncFunc
+        /// Pass input and cancellationToken to asyncFunc and return a Task.
         /// </summary>
         /// <typeparam name="T">The type you're operating on.</typeparam>
         /// <param name="input">The object passed to func.</param>
@@ -49,7 +49,7 @@ namespace WinstonPuckett.PipeExtensions
 
 
         /// <summary>
-        /// Pass input and cancellationToken to asyncFunc
+        /// Pass input and cancellationToken to asyncFunc and return a Task.
         /// </summary>
         /// <typeparam name="T">The type you're operating on.</typeparam>
         /// <param name="input">The object passed to func.</param>

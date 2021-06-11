@@ -8,9 +8,21 @@ namespace WinstonPuckett.PipeExtensions
 {
     public static class In2_Out1
     {
+        /// <summary>
+        /// Destructure input tuple, pass it to func, and return the result.
+        /// </summary>
+        /// <typeparam name="T">The type of the first parameter to func.</typeparam>
+        /// <param name="input">The object passed to func.</param>
+        /// <param name="func">The function to call which operates on input.</param>
         public static V Pipe<T, U, V>(this (T, U) input, Func<T, U, V> func)
             => func(input.Item1, input.Item2);
 
+        /// <summary>
+        /// Destructure input tuple, pass it to func, and return the result.
+        /// </summary>
+        /// <typeparam name="T">The type of the first parameter to func.</typeparam>
+        /// <param name="input">The object passed to func.</param>
+        /// <param name="func">The function to call which operates on input.</param>
         public static async Task<V> PipeAsync<T, U, V>(this (T, U) input, Func<T, U, Task<V>> asyncFunc)
             => await asyncFunc(input.Item1, input.Item2);
 
