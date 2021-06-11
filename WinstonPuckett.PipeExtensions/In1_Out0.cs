@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinstonPuckett.PipeExtensions
 {
-    public static class In1_Out0
+    public static partial class PipeExtensions
     {
         /// <summary>
         /// Pass input to func.

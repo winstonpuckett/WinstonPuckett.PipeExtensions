@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinstonPuckett.PipeExtensions
 {
-    public static class In2_Out1
+    public static partial class PipeExtensions
     {
         /// <summary>
         /// Destructure input tuple, pass it to func, and return the result.
