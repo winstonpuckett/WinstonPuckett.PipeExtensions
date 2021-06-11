@@ -14,12 +14,21 @@
     <RepositoryUrl>https://github.com/winstonpuckett/WinstonPuckett.PipeExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>functional, fsharp, operator, extensions</PackageTags>
-    <PackageReleaseNotes>Add support for CancellationTokens</PackageReleaseNotes>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <PackageReleaseNotes>Add support for destructuring tuples into dyadic funcitons.</PackageReleaseNotes>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
     <FileVersion>1.1.0.0</FileVersion>
     <Product>PipeExtensions</Product>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
+    <ApplicationIcon>C:\Users\Bobby Puckett\source\repos\WinstonPuckett.PipeExtensions\WinstonPuckett.PipeExtensions\Icon\icon.png</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
