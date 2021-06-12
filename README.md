@@ -6,9 +6,11 @@ Here are currently open tickets requesting the feature:
 - [C# ticket #74](https://github.com/dotnet/csharplang/discussions/74)
 - [C# ticket #96](https://github.com/dotnet/csharplang/discussions/96)
 
+If you find you like this package, please take the time to upvote these tickets.
+
 # Install
 
-[NuGet page](https://www.nuget.org/packages/WinstonPuckett.PipeExtensions/1.0.0#)
+[NuGet page](https://www.nuget.org/packages/WinstonPuckett.PipeExtensions/)
 
 # What is a forward pipe operator?
 
@@ -37,7 +39,7 @@ input
   |> Submit
 ```
 
-The above syntax means, "Take input, pass it to Query, then pass the result to Validate, then pass the result to Transform, then pass the result to Submit."
+The above syntax results in, "Take input, pass it to Query, then pass the result to Validate, then pass the result to Transform, then pass the result to Submit."
 
 # What does a forward pipe operator look like in C#?
 
@@ -54,6 +56,8 @@ public static U Pipe<T, U>(this T input, Func<T, U> @operator)
 }
 ```
 
+In reality, there are a lot of permutations of the above function to handle all async and dyadic/triadic use cases.
+
 ## Using the pipe operator
 
 To use the Pipe operator, you would just call .Pipe on whatever object you're using and pass in the function you're hoping to run.
@@ -66,7 +70,7 @@ input
   .Pipe(Submit);
 ```
 
-## Asynchronous processing
+### Asynchronous processing
 
 You can also use async methods. Because of how C# conceptualizes tasks, you **must** use all .PipeAsync after your first async method regardless of whether your subsequent method is async. PipeAsync refers to the return type of the method, which will always be asynchronous after the first asynchronous request. Under the covers, PipeAsync awaits the result of Task<T> and passes T to the non-async method.
 
@@ -92,20 +96,39 @@ await input
     .PipeAsync(Submit);
 ```
   
-## Passing multiple arguments.
+### Passing multiple arguments.
   
-This package has opted to retain a consistent "Take what's on the left and pass it to the right" syntax, which means that we can only operate on one variable at a time. Even with this limitation, there are many ways to pass extra variables to functions. The most readable is a Tuple.
+This package has opted to retain a consistent "Take what's on the left and pass it to the right" syntax. This falls in-line with the original operator design for F#. However, as of version 1.3.0, There is a way to use dyadic and triadic functions. All you have to do is operate on a tuple with 2 or 3 parameters. Internally, .Pipe destructures the tuple and passes it to your function. Here's an example
   
 ```csharp
-bool Validate((int id, string name))
+#region Dyadic example.
+// Function with 2 parameters:
+bool Validate(int id, string name)
   => id > 0 && name != "invalid";
 
-var isValid = (0, "Charlie").Pipe(Validate);
+// Pass arguments to Validate through a tuple.
+// This is valid syntax as of v1.3.0.
+var isValid = (1, "Charlie").Pipe(Validate);
+#endregion
+  
+#region Triadic example.
+// Function with 2 parameters:
+bool Validate(int id, string name, short age)
+  => id > 0 && name != "invalid" && age < 175;
+
+// Pass arguments to Validate through a tuple.
+// This is valid syntax as of v1.3.0.
+var isValid = (1, "Charlie", 57).Pipe(Validate);
+#endregion
 ```
 
 # Why do we need a forward pipe operator?
 
-Code readability is important. While temporary variables are a step towards readability, they consistently create noise. F# and other functional languages have solved this problem. We should attempt to solve the problem for C# as well. One way to do this is by borrowing the concept of a forward pipe operator.
+There are three basic arguments for using .Pipe over plain function calls - readability, breaking dependencies, garbage collection.
+
+- Readability: When you use a forward pipe operator, you reduce the noise created by temporary variables. Your eye is drawn to the sequence of operations instead of bouncing back and forth between variable and function call.
+- Breaking dependencies: A major problem with large functions is that any line can depend on any line before it. If a function is 30 lines, line 29 can depend on line 15, 2, 1, 4, or any other. When a developer thinks in sequence with a forward pipe operator, the next line can only depend on the line before it.
+- Garbage collection: Memory allocation/deallocation is one of the hardest things for a developer to get right consistently. Only being able to depend on the previous line means that an object has to be allocated/deallocated within a small scope. Having a small scope means that a developer can more easily see where an object needs to be deallocated and when memory leaks occur, it is easy to spot where a variable is not being disposed of properly.
 
 # Example user flow
 
