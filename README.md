@@ -101,7 +101,6 @@ await input
 This package has opted to retain a consistent "Take what's on the left and pass it to the right" syntax. This falls in-line with the original operator design for F#. However, as of version 1.3.0, There is a way to use dyadic and triadic functions. All you have to do is operate on a tuple with 2 or 3 parameters. Internally, .Pipe destructures the tuple and passes it to your function. Here's an example
   
 ```csharp
-#region Dyadic example.
 // Function with 2 parameters:
 bool Validate(int id, string name)
   => id > 0 && name != "invalid";
@@ -109,17 +108,14 @@ bool Validate(int id, string name)
 // Pass arguments to Validate through a tuple.
 // This is valid syntax as of v1.3.0.
 var isValid = (1, "Charlie").Pipe(Validate);
-#endregion
-  
-#region Triadic example.
-// Function with 2 parameters:
+
+// Function with 3 parameters:
 bool Validate(int id, string name, short age)
   => id > 0 && name != "invalid" && age < 175;
 
 // Pass arguments to Validate through a tuple.
 // This is valid syntax as of v1.3.0.
 var isValid = (1, "Charlie", 57).Pipe(Validate);
-#endregion
 ```
 
 # Why do we need a forward pipe operator?
